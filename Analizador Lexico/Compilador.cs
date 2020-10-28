@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Analizador_Lexico.Sintactico;
+using Irony.Parsing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +14,20 @@ using System.Windows.Forms;
 
 namespace Analizador_Lexico
 {
-    public partial class Lexico : Form
+    public partial class Compilador : Form
     {
+        Timer timer = new Timer();
+        private void Compilador_Load(object sender, EventArgs e)
+        {
+            timer.Interval = 10;
+            timer.Start();
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            pictureBox1.Refresh();
+        }
         String[] reservadas = {
-             "if", "else",
+         "if", "else",
         "for", "while",
         "return", "case",
         "var", "main",
@@ -39,7 +51,7 @@ namespace Analizador_Lexico
         Regex rex;
         StringBuilder pattern = null;
         int[] group_numbers;
-        public Lexico()
+        public Compilador()
         {
             InitializeComponent();
             //se añaden todos los tokens con sus patrones
@@ -53,6 +65,7 @@ namespace Analizador_Lexico
             tokens.Add(new Token(@"[\.\+\-/*%]", "OPERADOR", false));
             tokens.Add(new Token(@"\b[_a-zA-Z][\w]*\b", "IDENTIFICADOR", false));
             tokens.Add(new Token(@"&&|\|\|", "OPERADOR_LOGICO", false));
+            tokens.Add(new Token(@"\$", "OPERADOR_DE_CONCATENACIÓN", false));
             tokens.Add(new Token(@"-=|\+=|\*=|\/=|%=|=|:", "OPERADOR_DE_ASIGNACIÓN", false));
             tokens.Add(new Token(@"\+\+", "OPERADOR_DE_INCREMENTO", false));
             tokens.Add(new Token(@"--", "OPERADOR_DE_DECREMENTO", false));
@@ -161,42 +174,15 @@ namespace Analizador_Lexico
             dgvTokens.Rows.Clear();
 
             foreach (var tk in this.GetTokens(espacio_de_texto.Text))
-            {
-                var palabras = this.espacio_de_texto.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                int inicio = 0;
-               
-                
+            {                
                 if (tk.Name == "ERROR"){
                     dgvTokens.Rows.Add(tk.Name, tk.Lexema, tk.Index, tk.Linea);
-                    //espacio_de_texto.ForeColor = System.Drawing.Color.Red;
-                    foreach (var item in palabras)
-                    {
-                        if (item == tk.Lexema)
-                        {
-                            inicio = this.espacio_de_texto.Text.IndexOf(item, tk.Index);
-                            this.espacio_de_texto.Select(inicio, item.Length);
-                            this.espacio_de_texto.SelectionColor = Color.Red;
-                            this.espacio_de_texto.SelectionStart = this.espacio_de_texto.Text.Length;
-                            inicio++;
-                        }
-                    }
                 }
                 else
                 {
                     if(tk.Name == "COMENTARIO")
                     {
                         dgvTokens.Rows.Add(tk.Name, tk.Lexema, tk.Index, tk.Linea);
-                        foreach (var item in palabras)
-                        {
-                            if (item == tk.Lexema)
-                            {
-                                inicio = this.espacio_de_texto.Text.IndexOf(item, tk.Index);
-                                this.espacio_de_texto.Select(inicio, item.Length);
-                                this.espacio_de_texto.SelectionColor = Color.LightGray;
-                                this.espacio_de_texto.SelectionStart = this.espacio_de_texto.Text.Length;
-                                inicio++;
-                            }
-                        }
                     }
                     else
                     {
@@ -205,17 +191,6 @@ namespace Analizador_Lexico
                             if (tk.Name == "IDENTIFICADOR")
                                 if (reservadas.Contains(tk.Lexema))
                                     tk.Name = "RESERVADO";
-                            foreach (var item in palabras)
-                            {
-                                if (item == tk.Lexema)
-                                {
-                                    inicio = this.espacio_de_texto.Text.IndexOf(item, tk.Index);
-                                    this.espacio_de_texto.Select(inicio, item.Length);
-                                    this.espacio_de_texto.SelectionColor = Color.Lime;
-                                    this.espacio_de_texto.SelectionStart = this.espacio_de_texto.Text.Length;
-                                    inicio++;
-                                }
-                            }
                             dgvTokens.Rows.Add(tk.Name, tk.Lexema, tk.Index, tk.Linea);
                         }
                     }
@@ -227,10 +202,42 @@ namespace Analizador_Lexico
         private void espacio_de_texto_TextChanged_1(object sender, EventArgs e)
         {
             analizarCodigo();
+            analisisSintactico();
+            pictureBox1.Refresh();
 
         }
+        private void analisisSintactico()
+        {
+            Gramatica gramatica = new Gramatica();
+            LanguageData languaje = new LanguageData(gramatica);
+            Parser parser = new Parser(languaje);
+            ParseTree parseTree = parser.Parse(espacio_de_texto.Text);
+            ParseTreeNode node = parseTree.Root;
 
-        private void button1_Click(object sender, EventArgs e)
+            if (node == null)
+            {
+                results.ForeColor = Color.Red;
+                results.Text = ">>>>>";
+                espacio_de_texto.ForeColor = Color.Red;
+
+                for (int i = 0; i < parseTree.ParserMessages.Count; i++)
+                {
+                    results.Text +=parseTree.ParserMessages[i].Message + "\n>>>>>linea: " + parseTree.ParserMessages[i].Location.Line + "\n";
+                }
+            }
+            else
+            {
+                results.ForeColor = Color.Lime;
+                espacio_de_texto.ForeColor = Color.Lime;
+                results.Text = ">>>>>Correcto";
+                var arbol = new ParseTreeClass(parseTree);
+                var nodes = arbol.Traverse();
+
+                results.Text += ("\nArbol:\n" + arbol);
+            }
+        }
+
+        private void abrirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -246,14 +253,55 @@ namespace Analizador_Lexico
                     using (StreamReader sr = new StreamReader(@path))
                     {
                         string texto;
+                        espacio_de_texto.Text = "";
                         while ((texto = sr.ReadLine()) != null)
                         {
-                            espacio_de_texto.Text += texto+"\n";
+                            espacio_de_texto.Text += texto + "\n";
                         }
                         sr.Close();
                     }
                 }
             }
+        }
+
+        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog fileDialog = new SaveFileDialog())
+            {
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    String name = fileDialog.FileName;
+                    StreamWriter textoAGuardar = File.CreateText(name);
+                    textoAGuardar.Write(espacio_de_texto.Text);
+                    textoAGuardar.Flush();
+                    textoAGuardar.Close();
+                    filePath.Text = name;
+                }
+            }
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            int caracter = 0;
+            int altura = espacio_de_texto.GetPositionFromCharIndex(0).Y;
+            if (espacio_de_texto.Lines.Length > 0)
+            {
+                for (int i = 0; i < espacio_de_texto.Lines.Length - 1; i++)
+                {
+                    e.Graphics.DrawString((i + 1).ToString(), espacio_de_texto.Font, Brushes.Orange, pictureBox1.Width - e.Graphics.MeasureString((i + 1).ToString(), espacio_de_texto.Font).Width + 2, altura);
+                    caracter += espacio_de_texto.Lines[i].Length + 1;
+                    altura = espacio_de_texto.GetPositionFromCharIndex(caracter).Y;
+                }
+            }
+            else
+            {
+                e.Graphics.DrawString("1", espacio_de_texto.Font, Brushes.Orange, pictureBox1.Width - (e.Graphics.MeasureString("1", espacio_de_texto.Font).Width + 10), altura);
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

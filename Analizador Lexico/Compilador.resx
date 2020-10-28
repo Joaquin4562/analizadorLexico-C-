@@ -117,7 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="Token.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Lexema.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Index.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Linea.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="abrirToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAH
+        owAAB6MBMC+yxQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGGSURBVFhH7ZQ9
+        S8NAGIAjLrqbtJQOdVAc3MRBF4sgpCmOxcmfoL9BBP+Fu+AkfgxNramoxdrmuinioNAq0p65BBELRc5Y
+        LEruHZp6d10cnuW9J3cPBzmFUjpQwKFMwKFMlKap7jdNrdUL2NRWoU3+gh+g0RB4z9nIOLRRv4QNoP4t
+        XNBdZRjarB9CB3yz2bDUaFierNgYr4D+yWobgw7Y+w/oKQCbkZdmTqtz5zi2Q6p64otaMTMKB+TiZRfp
+        7wQZVCQuMm7AAKc0h6APBFCGAh79hY+AKIp1JgAXJixAFEH7FaVUJoCUkneAzB/bOGT/glz0GpQF4Nqp
+        FSYAn03Lun7v3kqOBAPapLLUAGQRbDMPEc7HS4AoiNQCE+AUZ85hmTsP/rlDwQCPIP0NkLnj2umt7uE/
+        ASeJU0gWAa4sTzEBzuW8DckCKP8+vBtQ8xckPb3pNSYAFybzsMydztPLBJCrxVtA5k/VOAge3glwUfrI
+        F1qCqXtVfRYMgIYyAYcyAYfyoMonKpKbayz3pHIAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="guardarToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        pgAAAKYB3X3/OAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFTSURBVEhL3da9
+        S8NAGMfx/jlKR6niH6B1cBQUXwZxVEQEBwfBWRykUNDFRcFRnCoiOqhTEYTSGkkhsYlvKSbWaJu7Rh4b
+        4cSnuTOYNIvDZ/19ubvlEos77lkLMBOzJoyMGUKpAQ3pG9SgK+N+Sbaktz7WASDBeIHv8agBT3dbpOOB
+        9kgsgZ+R2AIe701iDXh8gck5izvM+AJpnTvM+ALzmwRmVmyh/qkq0rNkc4cZXyAIb+Q3/zCQyTUhX6ZC
+        V4oltHzYCA5caxQIIUKKbghJmhkckPTwgZu/Buj9LlB5AWnmUsj7xXT4ALHyQO+2kfr5OPJcyEYIEAeI
+        84bcVhRE0R/DB2hlA2hxFHEPkohzOhzhBLYKpHqMvFyuIg/yUYRA3QRSKyJGaQ/RlEL4AFXXAq+InAxF
+        OEHDAvIqI0/SPqKppQgBDjbGIwqgb0snA71Zt/YJDCzqQy58Oy4AAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

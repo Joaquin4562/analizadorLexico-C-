@@ -2,10 +2,22 @@ D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\bin\Debug\Analizador
 D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\bin\Debug\Analizador Lexico.exe
 D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\bin\Debug\Analizador Lexico.pdb
 D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador Lexico.csprojAssemblyReference.cache
-D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador_Lexico.Form1.resources
 D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador_Lexico.Properties.Resources.resources
 D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador Lexico.csproj.GenerateResource.cache
 D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador Lexico.exe
 D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador Lexico.pdb
-D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador_Lexico.Lexico.resources
 D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador Lexico.csproj.CoreCompileInputs.cache
+D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador_Lexico.Compilador.resources
+D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\bin\Debug\Irony.dll
+D:\VisualStudioProyects\Analizador Lexico\Analizador Lexico\obj\Debug\Analizador Lexico.csproj.CopyComplete
+D:\VisualStudioProyects\Compilador\Analizador Lexico\bin\Debug\Analizador Lexico.exe.config
+D:\VisualStudioProyects\Compilador\Analizador Lexico\bin\Debug\Analizador Lexico.exe
+D:\VisualStudioProyects\Compilador\Analizador Lexico\bin\Debug\Analizador Lexico.pdb
+D:\VisualStudioProyects\Compilador\Analizador Lexico\obj\Debug\Analizador Lexico.csprojAssemblyReference.cache
+D:\VisualStudioProyects\Compilador\Analizador Lexico\obj\Debug\Analizador_Lexico.Compilador.resources
+D:\VisualStudioProyects\Compilador\Analizador Lexico\obj\Debug\Analizador_Lexico.Properties.Resources.resources
+D:\VisualStudioProyects\Compilador\Analizador Lexico\obj\Debug\Analizador Lexico.csproj.GenerateResource.cache
+D:\VisualStudioProyects\Compilador\Analizador Lexico\obj\Debug\Analizador Lexico.csproj.CoreCompileInputs.cache
+D:\VisualStudioProyects\Compilador\Analizador Lexico\obj\Debug\Analizador Lexico.csproj.CopyComplete
+D:\VisualStudioProyects\Compilador\Analizador Lexico\obj\Debug\Analizador Lexico.exe
+D:\VisualStudioProyects\Compilador\Analizador Lexico\obj\Debug\Analizador Lexico.pdb
