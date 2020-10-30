@@ -45,12 +45,16 @@
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textSemantica = new System.Windows.Forms.RichTextBox();
+            this.compilarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTokens)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvTokens
@@ -109,7 +113,7 @@
             this.espacio_de_texto.Location = new System.Drawing.Point(31, 19);
             this.espacio_de_texto.Name = "espacio_de_texto";
             this.espacio_de_texto.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.espacio_de_texto.Size = new System.Drawing.Size(867, 222);
+            this.espacio_de_texto.Size = new System.Drawing.Size(1213, 222);
             this.espacio_de_texto.TabIndex = 4;
             this.espacio_de_texto.Text = "";
             this.espacio_de_texto.TextChanged += new System.EventHandler(this.espacio_de_texto_TextChanged_1);
@@ -119,7 +123,7 @@
             this.filePath.Location = new System.Drawing.Point(12, 27);
             this.filePath.Name = "filePath";
             this.filePath.ReadOnly = true;
-            this.filePath.Size = new System.Drawing.Size(913, 20);
+            this.filePath.Size = new System.Drawing.Size(1244, 20);
             this.filePath.TabIndex = 6;
             // 
             // groupBox1
@@ -128,7 +132,7 @@
             this.groupBox1.Controls.Add(this.espacio_de_texto);
             this.groupBox1.Location = new System.Drawing.Point(12, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(913, 258);
+            this.groupBox1.Size = new System.Drawing.Size(1250, 258);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Codigo";
@@ -141,7 +145,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(25, 222);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // results
@@ -181,11 +184,12 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirToolStripMenuItem});
+            this.abrirToolStripMenuItem,
+            this.compilarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(937, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1283, 24);
             this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -214,12 +218,44 @@
             this.guardarToolStripMenuItem.Text = "Guardar";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.textSemantica);
+            this.groupBox4.Location = new System.Drawing.Point(931, 317);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(331, 222);
+            this.groupBox4.TabIndex = 12;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Análisis semantico";
+            // 
+            // textSemantica
+            // 
+            this.textSemantica.BackColor = System.Drawing.SystemColors.MenuText;
+            this.textSemantica.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textSemantica.Font = new System.Drawing.Font("Consolas", 11.25F);
+            this.textSemantica.ForeColor = System.Drawing.Color.Lime;
+            this.textSemantica.Location = new System.Drawing.Point(6, 19);
+            this.textSemantica.Name = "textSemantica";
+            this.textSemantica.ReadOnly = true;
+            this.textSemantica.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.textSemantica.Size = new System.Drawing.Size(319, 197);
+            this.textSemantica.TabIndex = 5;
+            this.textSemantica.Text = "";
+            // 
+            // compilarToolStripMenuItem
+            // 
+            this.compilarToolStripMenuItem.Name = "compilarToolStripMenuItem";
+            this.compilarToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.compilarToolStripMenuItem.Text = "Compilar";
+            this.compilarToolStripMenuItem.Click += new System.EventHandler(this.compilarToolStripMenuItem_Click);
+            // 
             // Compilador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(937, 551);
+            this.ClientSize = new System.Drawing.Size(1283, 551);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -236,6 +272,7 @@
             this.groupBox3.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,5 +296,8 @@
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RichTextBox textSemantica;
+        private System.Windows.Forms.ToolStripMenuItem compilarToolStripMenuItem;
     }
 }

@@ -1,10 +1,13 @@
-﻿using Analizador_Lexico.Sintactico;
+﻿using Analizador_Lexico.semantico;
+using Analizador_Lexico.Sintactico;
+using Compiler;
 using Irony.Parsing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -49,8 +52,11 @@ namespace Analizador_Lexico
         List<Token> tokens = new List<Token>();
         List<String> token_names = new List<String>();
         Regex rex;
+        int contador = 0;
         StringBuilder pattern = null;
         int[] group_numbers;
+        TablaSimbolos tablaSimbolos = new TablaSimbolos();
+        ParseTreeNode ast;
         public Compilador()
         {
             InitializeComponent();
@@ -208,11 +214,12 @@ namespace Analizador_Lexico
         }
         private void analisisSintactico()
         {
-            Gramatica gramatica = new Gramatica();
+            GramaticaJava gramatica = new GramaticaJava();
             LanguageData languaje = new LanguageData(gramatica);
             Parser parser = new Parser(languaje);
             ParseTree parseTree = parser.Parse(espacio_de_texto.Text);
             ParseTreeNode node = parseTree.Root;
+            ast = parseTree.Root;
 
             if (node == null)
             {
@@ -232,11 +239,10 @@ namespace Analizador_Lexico
                 results.Text = ">>>>>Correcto";
                 var arbol = new ParseTreeClass(parseTree);
                 var nodes = arbol.Traverse();
-
                 results.Text += ("\nArbol:\n" + arbol);
             }
         }
-
+     
         private void abrirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -299,9 +305,65 @@ namespace Analizador_Lexico
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void compilarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tablaSimbolos = new TablaSimbolos();
+            recorrerAST(ast);
+        }
+        private void recorrerAST(ParseTreeNode node)
+        {
+            var nodos = Dfs(node);
+            for (int i = 0; i < nodos.Count(); i++)
+            {
+                var nodo = nodos[i];
+                if (nodo.Term.Name == GramaticaJava.NoTerminales.TipoDato)
+                {
+                    var tipo = nodo.FindTokenAndGetText();
+                    var identificador = nodos[i + 3].FindTokenAndGetText();
+                    var operador = nodos[i + 6].FindTokenAndGetText();
+                    var dato = nodos[i + 9].FindTokenAndGetText();
+                    Console.WriteLine(tipo);
+                    Console.WriteLine(identificador);
+                    Console.WriteLine(operador);
+                    Console.WriteLine(dato);
+                    tablaSimbolos.AgregarSimbolo(new Simbolo(tipo, identificador, operador, dato));
+                    Console.WriteLine(tablaSimbolos.ToString());
+                }
+            }
+            textSemantica.Text = verificarIdentificadores(tablaSimbolos);
+        }
+        public string verificarIdentificadores(TablaSimbolos tabla)
+        {
+            var listaIds = new List<string>();
+            string resultado = "";
+            foreach (Simbolo simbolo in tabla.Simbolos)
+            {
+                string id = simbolo.Id;
+                if (!listaIds.Contains(id))
+                {
+                    listaIds.Add(id);
+                }
+                else
+                {
+                    resultado += "El identificador " + id + " esta repetido \r\n";
+                }
+            }
+            return resultado;
 
+        }
+        public List<ParseTreeNode> Dfs(ParseTreeNode raiz)
+        {
+            List<ParseTreeNode> nodos = new List<ParseTreeNode>();
+            Dfs(raiz, nodos);
+            return nodos;
+        }
+        public void Dfs(ParseTreeNode raiz, List<ParseTreeNode> nodos)
+        {
+            nodos.Add(raiz);
+            raiz.ChildNodes.ForEach(nodo =>
+            {
+                Dfs(nodo, nodos);
+            });
         }
     }
 }

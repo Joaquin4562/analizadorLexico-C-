@@ -59,7 +59,10 @@
     <Compile Include="ParseTreeClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="semantico\Simbolo.cs" />
+    <Compile Include="semantico\TablaSimbolos.cs" />
     <Compile Include="Sintactico\Gramatica.cs" />
+    <Compile Include="Sintactico\GramaticaJava.cs" />
     <Compile Include="Sintactico\Sintactico.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="tokens.cs" />
